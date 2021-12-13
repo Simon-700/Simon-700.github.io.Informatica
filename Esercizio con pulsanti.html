@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esercizio css html con pulsanti</title>
+    <style>
+/*css  selettore {proprietà:valore;} */
+    div {
+
+        border: 1px solid black;
+        display:inline-block;
+        height: 40px;
+        width: 40px;
+        margin: 1px;
+       
+    }
+ p {
+     text-align: center;
+     font-size: x-small;
+ }
+.red{
+
+    background-color: rgb(80, 127, 180);
+}
+
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.buttonBlue {background-color: #008CBA;} /* Blue */
+
+    </style>
+</head>
+<body>
+    <div id ="box1" class="red"><p>1</p></div>
+    <div id ="box2" class="red"><p>2</p></div>
+    <div id ="box3" class="red"><p>3</p></div>
+    <div id ="box4" class="red"><p>4</p></div>
+    <div id ="box5" class="red"><p>5</p></div>
+    <div id ="box6" class="red"><p>6</p></div>
+    <div id ="box7" class="red"><p>7</p></div>
+    <div id ="box8" class="red"><p>8</p></div>
+    <div id ="box9" class="red"><p>9</p></div>
+    <div id ="box10" class="red"><p>10</p></div>
+
+    <button class="buttonBlue" type="button" onclick="return CambiaTXT()">PREMIMI !</button>
+    <button class="buttonBlue" type="button" onclick="return TABELLINA2()">TABELLINA DEL 2 (PREMIMI !)</button>
+
+<script>
+  function CambiaTXT(){
+   document.getElementById("box1").innerHTML="CIAO";
+   document.getElementById("box2").innerHTML="CIAO";
+   document.getElementById("box3").innerHTML="CIAO";
+   document.getElementById("box4").innerHTML="CIAO";
+   document.getElementById("box5").innerHTML="CIAO";
+   document.getElementById("box6").innerHTML="CIAO";
+   document.getElementById("box7").innerHTML="CIAO";
+   document.getElementById("box8").innerHTML="CIAO";
+   document.getElementById("box9").innerHTML="CIAO";
+   document.getElementById("box10").innerHTML="CIAO";
+  }
+</script>
+
+<script>
+    function TABELLINA2(){
+     document.getElementById("box1").innerHTML="2";
+     document.getElementById("box2").innerHTML="4";
+     document.getElementById("box3").innerHTML="6";
+     document.getElementById("box4").innerHTML="8";
+     document.getElementById("box5").innerHTML="10";
+     document.getElementById("box6").innerHTML="12";
+     document.getElementById("box7").innerHTML="14";
+     document.getElementById("box8").innerHTML="16";
+     document.getElementById("box9").innerHTML="18";
+     document.getElementById("box10").innerHTML="20";
+    }
+</script>
+
+
+
+</body>
+</html>
