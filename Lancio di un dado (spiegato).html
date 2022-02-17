@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lancio di un dado</title>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=cYwGWFK6BpojPVFEKle2FCi4mZ2ABdnTD9ow54XN6SvQRXbs6ZOYA-a94npd9W7ZibrpMchEKJSxnmbjlJKrz7GrbZoJi_sRhbsGYUZcEm0" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9zZHJ1YmFsZS5naXRodWIuaW8vaW5mb3JtYXRpY2EvZ2VuZXJhemlvbmVkYWRvLmh0bWw"/></head>
+<body>
+    <p>Vediamo come creare un lancio di un dado</p>
+<button onclick="return dado()">lancia dado</button>
+<p>La prima cosa che dobbiamo fare è generare un numero compreso tra 0 (incluso) e 1 (escluso)</p>
+<p id="nuum"></p>
+<p>Fatto questo dobbiamo moltiplicarlo per 6</p>
+<p id="nuum6"></p>
+<p>Dopo aver fatto ciò dobbiamo prendere la parte intera</p>
+<p id="nuumint"></p>
+<P> E per finire basta aggiungerli uno</P>
+<p id="nuum1"></p>
+<script>
+    function dado(){
+        let num= Math.random();
+        document.getElementById("nuum").innerHTML = num;
+        num = num*6;
+        document.getElementById("nuum6").innerHTML = num;
+        num = Math.floor(num);
+        document.getElementById("nuumint").innerHTML = num;
+        num = num+1;
+        document.getElementById("nuum1").innerHTML = num;
+    }
+</script>
+</body>
+</html>
