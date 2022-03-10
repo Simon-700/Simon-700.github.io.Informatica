@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test di velocità</title>
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=oSSCqs5iGMDpr-ZhayMiydMV3k3haDluDdXtFI36B_AxKl8HGM1xe52ziFkbvKgtTLTj6whYU-ztH305qFO1CVQBq1Z8UTmtqP-aPVDml6o" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9zZHJ1YmFsZS5naXRodWIuaW8vaW5mb3JtYXRpY2EvcmVhemlvbmUuaHRtbA"/><style>
+    #scatola1{
+
+        height: 300px;
+        width: 300px;
+        border: 2px solid black;
+        padding-top: 30px;
+        text-align: center;
+
+    }
+   
+        .btn {
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 49px;
+  padding: 10px 20px 10px 20px;
+  border: solid #0a314a 4px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #fc3c5c;
+  background-image: -webkit-linear-gradient(top, #fc3c5c, #f70029);
+  background-image: -moz-linear-gradient(top, #fc3c5c, #f70029);
+  background-image: -ms-linear-gradient(top, #fc3c5c, #f70029);
+  background-image: -o-linear-gradient(top, #fc3c5c, #f70029);
+  background-image: linear-gradient(to bottom, #fc3c5c, #f70029);
+  text-decoration: none;
+}
+   
+.score{
+
+    font-size: large;
+    color: black;
+}
+.scorebox{
+   background-color: blanchedalmond;
+   border: 1px black solid;
+    margin:100px;
+   height: 100px;
+   width: 100px;
+}
+.scorebox1{
+   background-color: blanchedalmond;
+   border: 1px black solid;
+    margin:100px;
+   height: auto;
+   width: 100px;
+}
+#iniziatore{
+    color: #fff; 
+    text-decoration: none;
+    background: rgb(212,75,56);
+    padding: 2px; 
+    margin: 2px;
+    outline: none;
+    height: auto;
+    width: auto;
+    }
+</style>
+</head>
+<body>
+    <p>La scopo di questo giochino è quello di premere il bottone il più velocemente possibile quando appare il verde (il bottone da premere è quello con su scritto "FIRE"). Se premerai il bottone quando non è verde perderai una vita, se arrivarai a 0 vite perderai (inizi con 3 Vite). Infine se quando comparira il verde non premerai il bottone perderai una vita, e per ogni vita persa avrai una penalità di 2 secondi.</p>
+    <div>
+    
+    <button onclick="Starter()" id="iniziatore">Premi qui per iniziare il gioco</button>
+<div   id="scatola1" >
+    <button id="miobottone" class="btn" onclick="Check()">  PREMI !   </button>
+     
+</div>
+
+    
+<p id="Vite">Tentativi rimasti 10</p>
+<div class="scorebox1" >
+        <p id="Tentativi1" class="score"></p>
+        <p id="OutTempo1" class="score"></p>
+        <p id="Tentativi2" class="score"></p>
+        <p id="OutTempo2" class="score"></p>
+        <p id="Tentativi3" class="score"></p>
+        <p id="OutTempo3" class="score"></p>
+        <p id="Tentativi4" class="score"></p>
+        <p id="OutTempo4" class="score"></p>
+        <p id="Tentativi5" class="score"></p>
+        <p id="OutTempo5" class="score"></p>
+        <p id="Tentativi6" class="score"></p>
+        <p id="OutTempo6" class="score"></p>
+        <p id="Tentativi7" class="score"></p>
+        <p id="OutTempo7" class="score"></p>
+        <p id="Tentativi8" class="score"></p>
+        <p id="OutTempo8" class="score"></p>
+        <p id="Tentativi9" class="score"></p>
+        <p id="OutTempo9" class="score"></p>
+        <p id="Tentativi10" class="score"></p>
+        <p id="OutTempo10" class="score"></p>
+     </div>
+<p id="Migliore"></p>
+<p id="Peggiore"></p>
+<p id="Media"></p>
+   
+    <script>
+            let ferma=0;
+            let tent=0;
+            let vecchiotent=0;
+            let cont=0;
+            let maggiore=0;
+            let minore=0;
+            let click=0;
+            let casuale=0;
+            let lives=3;
+            let tentativi=0;
+            let tempi=[];
+            let vecchiocolore=0;
+            let Ulttemp=0;
+            let Ultverde=0;
+            let colori = ["red","yellow","green","black"];
+            function Stop(){
+                ferma++;
+                clearInterval(Cambiacolore)
+                document.getElementById("Migliore").innerHTML="Il tuo tempo migliore è stato "+minore;
+                document.getElementById("Peggiore").innerHTML="Il tuo tempo peggiore è stato "+maggiore;
+                cont=((tempi[0]+tempi[1]+tempi[2]+tempi[3]+tempi[4]+tempi[5]+tempi[6]+tempi[7]+tempi[8]+tempi[9]+(3-lives)+2000)/(10+3-lives));
+                document.getElementById("Media").innerHTML="La tua media dei tempi è stata "+cont+" ms";
+            }
+            function Starter(){
+                if (cont==0){
+                    setInterval(Cambiacolore,1000);
+                    cont++;
+            }
+            }
+            function Cambiacolore(){
+                if(Ulttemp==0 && tentativi>0 && lives>-1 && casuale==2){
+                lives=lives-1;
+                document.getElementById("Vite").innerHTML="Vite: "+lives;
+                if(lives==0){
+                    document.getElementById("Tentativi1").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi2").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi3").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi4").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi5").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi6").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi7").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi8").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi9").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi10").innerHTML ="Hai perso!";
+                    document.getElementById("OutTempo1").innerHTML =" ";
+                    document.getElementById("OutTempo2").innerHTML =" ";
+                    document.getElementById("OutTempo3").innerHTML =" ";
+                    document.getElementById("OutTempo4").innerHTML =" ";
+                    document.getElementById("OutTempo5").innerHTML =" ";
+                    document.getElementById("OutTempo6").innerHTML =" ";
+                    document.getElementById("OutTempo7").innerHTML =" ";
+                    document.getElementById("OutTempo8").innerHTML =" ";
+                    document.getElementById("OutTempo9").innerHTML =" ";
+                    document.getElementById("OutTempo10").innerHTML =" ";
+            }
+            }
+                casuale = parseInt((Math.random()*4));
+                if (casuale !=2){
+                    click=0;
+                } 
+                if (vecchiocolore != casuale && lives>0 && tentativi<11 ){
+                document.getElementById("scatola1").style.backgroundColor =colori[casuale];
+            }
+            if (casuale !=vecchiocolore && casuale==2 && lives>0 && lives!=0 && tentativi<11){
+                    Ultverde= Date.now();
+                    tentativi++;
+                    if(tentativi==1){
+                        document.getElementById("Tentativi1").innerHTML="1° tentativo:";
+                    }
+                    if(tentativi==2){
+                        document.getElementById("Tentativi2").innerHTML="2° tentativo:";
+                    }
+                    if(tentativi==3){
+                        document.getElementById("Tentativi3").innerHTML="3° tentativo:";
+                    }
+                    if(tentativi==4){
+                        document.getElementById("Tentativi4").innerHTML="4° tentativo:";
+                    }
+                    if(tentativi==5){
+                        document.getElementById("Tentativi5").innerHTML="5° tentativo:";
+                    }
+                    if(tentativi==6){
+                        document.getElementById("Tentativi6").innerHTML="6° tentativo:";
+                    }
+                    if(tentativi==7){
+                        document.getElementById("Tentativi7").innerHTML="7° tentativo:";
+                    }
+                    if(tentativi==8){
+                        document.getElementById("Tentativi8").innerHTML="8° tentativo:";
+                    }
+                    if(tentativi==9){
+                        document.getElementById("Tentativi9").innerHTML="9° tentativo:";
+                    }
+                    if(tentativi==10){
+                        document.getElementById("Tentativi10").innerHTML="10° tentativo:";
+                    }
+                    if(tentativi==11){
+                        return Stop();
+                    }
+
+            
+                }
+            vecchiocolore=casuale;
+            }
+            function Check(){
+            if(casuale==2 && lives>0 && tentativi<11 && click==0 && ferma!=1){
+                Ulttemp=Date.now()-Ultverde;
+                if(tentativi==1){
+                    document.getElementById("OutTempo1").innerHTML=Ulttemp +"ms";
+                }
+                if(tentativi==2){
+                    document.getElementById("OutTempo2").innerHTML=Ulttemp +"ms";
+                }
+                if(tentativi==3){
+                    document.getElementById("OutTempo3").innerHTML=Ulttemp +"ms";
+                }
+                if(tentativi==4){
+                    document.getElementById("OutTempo4").innerHTML=Ulttemp +"ms";
+                }
+                if(tentativi==5){
+                    document.getElementById("OutTempo5").innerHTML=Ulttemp +"ms";
+                }
+                if(tentativi==6){
+                    document.getElementById("OutTempo6").innerHTML=Ulttemp +"ms";
+                }
+                if(tentativi==7){
+                    document.getElementById("OutTempo7").innerHTML=Ulttemp +"ms";
+                }
+                if(tentativi==8){
+                    document.getElementById("OutTempo8").innerHTML=Ulttemp +"ms";
+                }
+                if(tentativi==9){
+                    document.getElementById("OutTempo9").innerHTML=Ulttemp +"ms";
+                }
+                if(tentativi==10){
+                    document.getElementById("OutTempo10").innerHTML=Ulttemp +"ms";
+                }
+                tempi.push(Ulttemp);
+                vecchiotent=tentativi;
+                click++;
+                if (Ulttemp>maggiore){
+                    maggiore=Ulttemp;
+                }
+                if (Ulttemp<minore&& Ulttemp!=0){
+                    minore=Ulttemp;
+                }
+                if (tentativi){
+                    minore=minore
+                }
+                Ulttemp=0;
+                }
+            if(casuale!=2 && tentativi<11 && cont==1 && ferma!=1){
+                lives=lives-1;
+                document.getElementById("Vite").innerHTML="Vite: "+lives;
+                if(lives==0){
+                    document.getElementById("Tentativi1").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi2").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi3").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi4").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi5").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi6").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi7").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi8").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi9").innerHTML ="Hai perso!";
+                    document.getElementById("Tentativi10").innerHTML ="Hai perso!";
+                    document.getElementById("OutTempo1").innerHTML =" ";
+                    document.getElementById("OutTempo2").innerHTML =" ";
+                    document.getElementById("OutTempo3").innerHTML =" ";
+                    document.getElementById("OutTempo4").innerHTML =" ";
+                    document.getElementById("OutTempo5").innerHTML =" ";
+                    document.getElementById("OutTempo6").innerHTML =" ";
+                    document.getElementById("OutTempo7").innerHTML =" ";
+                    document.getElementById("OutTempo8").innerHTML =" ";
+                    document.getElementById("OutTempo9").innerHTML =" ";
+                    document.getElementById("OutTempo10").innerHTML =" ";
+            }
+            
+            }
+            }
+    </script>
+</body>
+</html>
+

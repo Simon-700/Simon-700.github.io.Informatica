@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempo di click</title>
+</head>
+<body>
+    <h1>Test di rapidità</h1>
+    <p>Se sei curioso di scoprire quanto sei rapido a premere il pulsante qui sotto premi "START"</p>
+    <p id="tempo"></p>
+    <button onclick="return temp(ultclick)">START</button>
+    <script>
+        let tempo = Date.now();
+        let ultclick = 0;
+        function temp(last){
+         document.getElementById("tempo").innerHTML =
+          "Ci hai messo "+(Date.now() - tempo - last)+" ms dall'ultimo click!";  
+          ultclick= (Date.now() - tempo )
+        }
+    </script>
+  </body>
+</html>

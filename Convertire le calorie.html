@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertitore di calorie</title>
+<style>
+#miocontainer{
+ border: 3px black solid;
+  height: 300px;
+  width: 380px;
+  margin: 30px;
+  padding:20px;
+}
+</style>
+</head>
+<body>
+    <div id="miocontainer">
+        <label for="peso grassi">Valore grassi</label>
+         <input type="text" name="peso grassi" id="input1">
+        <p></p>
+         <button id="calcolaButton" onclick="Converti()">Premi per convertire in CALORIE</button>
+         <div>
+             <p id="out">1 GRAMMO equivale a 9 CALORIE</p>
+         </div>
+         <label for="peso carboidrati">Valore carboidrati</label>
+         <input type="text" name="peso carboidrati" id="input2">
+        <p></p>
+         <button id="calcolaButton" onclick="ConvertiCarb()">Premi per convertire i CARBOIDRATI in CALORIE</button>
+         <div>
+             <p id="outcarb">1 grammo di CARBOIDRATI equivale a 4 CALORIE</p>
+         </div>
+         <p id="TOT"></p>
+    </div>
+<script>
+    let tot=0;
+    let pesograsso=0;
+    let pesocarb=0;
+    function Converti() {
+        pesograsso=  document.getElementById("input1").value;
+      document.getElementById("out").innerHTML=pesograsso*9;
+      if(pesocarb>0 && pesograsso>0){
+            tot=pesocarb*4+pesograsso*9
+            document.getElementById("TOT").innerHTML="Il totale è "+tot;
+      }
+    }
+    function ConvertiCarb() {
+      pesocarb=  document.getElementById("input2").value;
+      document.getElementById("outcarb").innerHTML=pesocarb*4;
+      if(pesocarb>0 && pesograsso>0){
+          tot=pesocarb*4+pesograsso*9
+          document.getElementById("TOT").innerHTML="Il totale è "+tot;
+      }
+    }
+</script>
+</body>
+</html>
