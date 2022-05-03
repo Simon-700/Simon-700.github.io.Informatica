@@ -11,9 +11,6 @@
     <button id="bott" onclick="numeri()">Genera numeri primi!</button>
     <script>
 
-    let risultato=0;
-    let finale=0;
-
         function numeri(){
         let volte=0;   
         let a=1;
@@ -21,10 +18,12 @@
         for(let t=0;t<10;t++){
            for(let i=a;i<b+1;i++){
             if(start(i)){
-                document.write("<span>"+i+" "+"</span>");
+                document.write("<span style=color:red>"+i+" "+"</span>");
                 volte=volte+1;
             } 
-
+            else{
+                document.write("<span>"+i+" "+"</span>");
+            } 
             }
             document.write("<p>"+volte+" "+"</p>");
             b=b+100;
@@ -40,12 +39,12 @@
                 if((n%fattore)==0){
                     Out=false;
             }
+            }
             if(n==1){
                 Out=false;
             }
-            }
             return Out;
         }
-    </script>
+    </script> 
 </body>
 </html>
